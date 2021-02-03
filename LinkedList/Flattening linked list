@@ -1,0 +1,51 @@
+struct compare
+{
+    bool operator()(Node *a, Node *b)
+    {
+        return a -> data > b -> data;
+    }
+};
+    
+    
+Node* flatten(Node *root)
+{
+   // Your code here
+   
+  priority_queue<Node*, vector<Node*> ,compare> pq;
+  
+  Node *ptr = root, *head = NULL, *temp, *ptr1, *ptr2;
+  
+  head = NULL;
+  ptr1 = head;
+  
+  while(ptr != NULL)
+  {
+      pq.push(ptr);
+      ptr = ptr -> next;
+  }
+  
+  while(!pq.empty())
+  {
+    temp = pq.top();
+        pq.pop();
+    //cout << temp -> data << endl;
+      
+    if(temp -> bottom != NULL)
+        pq.push(temp -> bottom);
+        
+    if(head == NULL)
+    {
+        head = temp;
+        ptr = temp;
+        ptr -> next = NULL;
+    }
+    else
+    {
+        ptr -> bottom = temp;
+        ptr -> next = NULL;
+        ptr = temp;
+    }
+
+  } 
+  return head;
+}
