@@ -33,6 +33,7 @@ public:
                 l2 = l2 -> next;
             }
             
+            
             sum += car;
             
             num = sum % 10;
